@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    <small>{{ product.created }}</small>
+    <p>{{ product.price }} Toman </p>
+    <img src="{{ product.image.url }}" style="width:300px">
+    <p>{{ product.description|safe }}</p><br><br>
+
+
+<!--    {% if perms.home.add_order %}-->
+
+    <form action="{% url 'orders:cart_add' product.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="add to cart">
+    </form>
+<!--    {% endif %}-->
+{% endblock %}
+
+
+
